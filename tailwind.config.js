@@ -1,12 +1,12 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
-  content: ["./src/**/*.{html, js}"],
+  content: ["./**/*.{html, js}"],
   theme: {
     extend: {
       colors: {
         'wenge': '#54494B',  
-        'rose-light': '#cec0b2',
-        'rose-dark': '#b09982'        
+        'rose-light': '#d5c7bc',
+        'rose-dark': '#785964'        
       }
     },
 
