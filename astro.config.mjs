@@ -9,4 +9,6 @@ export default defineConfig({
       tailwindcss()
     ]
   },
+  site: "https://mawfyy.github.io",
+  base: ''
 });
