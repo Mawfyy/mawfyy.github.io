@@ -1,0 +1,18 @@
+---
+import { Image } from 'astro:assets';
+import githubIcon from '../assets/icons/github.png';
+
+const socials = [
+  { name: "github", icon: githubIcon, url: "https://github.com/Mawfyy" },
+];
+---
+
+<ul class="list-none grid place-items-center">
+  {socials.map(social => (
+    <li>
+      <a href={social.url}>
+        <Image class="invert" src={social.icon} alt={social.name} width="50" height="50"/>
+      </a>
+    </li>
+  ))}
+</ul>

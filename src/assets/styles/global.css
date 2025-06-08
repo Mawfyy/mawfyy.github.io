@@ -1,0 +1,7 @@
+@import "tailwindcss";
+@import url('https://fonts.googleapis.com/css2?family=Fira+Code:wght@300..700&display=swap');
+body {
+  font-family: 'Fira Code', monospace;
+  background-color: black; /* Sets the background to black */
+  color: white;           /* Sets the default text color to white */
+}
