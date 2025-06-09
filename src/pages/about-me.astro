@@ -1,4 +1,11 @@
 ---
-import Navbar from '../components/Navbar.astro' 
+import BaseLayout from '../layouts/BaseLayout.astro'
+import Yuri from '../assets/icons/Yuri.webp'
+import { Image } from 'astro:assets';
 ---
-<Navbar />
+<BaseLayout>
+  <main class="flex flex-col items-center justify-content">
+    <p>Don't talk to the man downstairs.</p>
+    <Image src={Yuri} alt="Yuri DDLC" width="500" height="500"/>
+  </main>
+</BaseLayout>
