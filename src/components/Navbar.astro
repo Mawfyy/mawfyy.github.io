@@ -1,18 +1,15 @@
 ---
 const pages = [
-  { name: "???????", route: "/cool" },
   { name: "Home", route: "/" }, 
   { name: "About me", route: "/about-me" }, 
   { name: "Contact me", route: "/contact-me" }, 
   { name: "Blogs", route: "/blog" },
   { name: "Projects", route: "/projects" }, 
   { name: "Media", route: "/media" }, 
-  //{ name: "RnJlZWRvbQo=", route: "https://en.wikipedia.org/wiki/Conformal_cyclic_cosmology" }
 ];
 ---
 <nav>
   <ul class="flex space-x-4 m-8 justify-center">
     {pages.map(({name, route}) => <li><a href={route} class="underline">{name}</a></li>)}
-    <li>aXNteXBsYWNl</li>
   </ul>
 </nav

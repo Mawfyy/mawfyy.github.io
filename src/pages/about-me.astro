@@ -1,11 +1,18 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro'
-import Yuri from '../assets/icons/Yuri.webp'
+import Kobayashi from '../assets/icons/kobayashi.png'
 import { Image } from 'astro:assets';
 ---
 <BaseLayout>
-  <main class="flex flex-col items-center justify-content">
-    <p>"Don't talk to the man downstairs."</p>
-    <Image src={Yuri} alt="Yuri DDLC" width="500" height="500"/>
-  </main>
+  <div class="flex flex-col items-center">
+    <div class="text-center">
+      <h1>Haai, I'm Mia known as Mawfyyyyyyyyyyyyy :3</h1>
+      <p>I like being social, discussing about technical topics and make new friends!!</p>
+      <p>I'm interested in programming, dark psychological topics, math, my beloved, videogames and philosophy as well.</p>
+      <p>I disagree with ppl being transphobic and unrespectful, people ignoring me and similar behavior</p>
+      <p>Linux user since I was 14 years old :3</p>
+      <p>Brawl Stars & GD player since 2019!!</p>
+    </div>
+    <Image src={Kobayashi} alt="Kobayashi san" width="500" height="500"/>
+  </div>
 </BaseLayout>
