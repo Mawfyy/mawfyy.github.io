@@ -1,8 +1,20 @@
 ---
 import "../assets/styles/global.css";
-import Footer from '../components/Footer.astro' 
-import Header from '../components/Header.astro' 
+import Footer from '../components/Footer.astro'
+import Header from '../components/Header.astro'
 import RikkaIcon from '../assets/icons/rikka.png'
+
+interface Props {
+  title?: string;
+  description?: string;
+}
+
+const {
+  title = "Mawfyy",
+  description = "Personal website of Mawfyy, a software engineer focused on Web, OS and Reverse Engineering.",
+} = Astro.props;
+
+const pageTitle = title === "Mawfyy" ? "Mawfyy" : `${title} — Mawfyy`;
 ---
 <!doctype html>
 <html lang="en">
@@ -11,7 +23,12 @@ import RikkaIcon from '../assets/icons/rikka.png'
 		<meta name="viewport" content="width=device-width" />
     <link rel="icon" type="image/png" href={RikkaIcon.src}/>
 		<meta name="generator" content={Astro.generator} />
-		<title>Mia</title>
+		<title>{pageTitle}</title>
+    <meta name="description" content={description} />
+    <meta property="og:title" content={pageTitle} />
+    <meta property="og:description" content={description} />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={Astro.url.href} />
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@300;400;500;700&display=swap" rel="stylesheet">
@@ -22,4 +39,3 @@ import RikkaIcon from '../assets/icons/rikka.png'
     <Footer />
 	</body>
 </html>
-

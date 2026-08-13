@@ -1,5 +1,55 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro'
+
+interface Repo {
+  name: string;
+  html_url: string;
+  description: string | null;
+  language: string | null;
+}
+
+const FALLBACK: Repo[] = [
+  { name: "home-drive", html_url: "https://github.com/Mawfyy/home-drive", description: "It's a simple google drive clone", language: "Svelte" },
+  { name: "monochrome", html_url: "https://github.com/Mawfyy/monochrome", description: "Stream and download millions of Hi-Res FLACs, unreleased songs and music videos, all for free on Monochrome.", language: "JavaScript" },
+  { name: "Masayoshi", html_url: "https://github.com/Mawfyy/Masayoshi", description: "A versatile and dynamic music bot designed to elevate the musical experience within Discord servers.", language: "Rust" },
+  { name: "lox-interpreter", html_url: "https://github.com/Mawfyy/lox-interpreter", description: "An interpreter for Lox language with learning propose.", language: "Rust" },
+  { name: "rod", html_url: "https://github.com/Mawfyy/rod", description: "Simple social platform just for fun and learning", language: "Blade" },
+  { name: "laravel.nvim", html_url: "https://github.com/Mawfyy/laravel.nvim", description: "Plugin for Nvim to work with laravel projects.", language: "Lua" },
+  { name: "mawfyy.github.io", html_url: "https://github.com/Mawfyy/mawfyy.github.io", description: "My personal web page", language: "Astro" },
+];
+
+let projects: Repo[] = FALLBACK;
+
+try {
+  const res = await fetch("https://api.github.com/users/Mawfyy/repos?per_page=100&sort=updated", {
+    headers: { "User-Agent": "mawfyy.github.io", "Accept": "application/vnd.github+json" },
+  });
+  if (res.ok) {
+    const data = await res.json();
+    projects = data
+      .filter((repo: any) => !repo.fork)
+      .map((repo: any) => ({
+        name: repo.name,
+        html_url: repo.html_url,
+        description: repo.description,
+        language: repo.language,
+      }));
+  }
+} catch {}
 ---
-<BaseLayout>
+<BaseLayout title="Projects" description="Projects I've built and am working on.">
+  <main class="max-w-2xl mx-auto p-4">
+    <h1 class="text-center">My Projects</h1>
+    <ul class="grid gap-4 mt-8">
+      {projects.map(project => (
+        <li class="border border-white/20 rounded p-4">
+          <a href={project.html_url} target="_blank" rel="noopener noreferrer" class="font-bold underline">
+            {project.name}
+          </a>
+          {project.language && <span class="ml-2 text-sm text-white/60">[{project.language}]</span>}
+          {project.description && <p class="mt-2 text-sm text-white/70">{project.description}</p>}
+        </li>
+      ))}
+    </ul>
+  </main>
 </BaseLayout>

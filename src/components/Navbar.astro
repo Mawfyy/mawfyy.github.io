@@ -1,15 +1,27 @@
 ---
 const pages = [
-  { name: "Home", route: "/" }, 
-  { name: "About me", route: "/about-me" }, 
-  { name: "Contact me", route: "/contact-me" }, 
+  { name: "Home", route: "/" },
+  { name: "About me", route: "/about-me" },
+  { name: "Contact me", route: "/contact-me" },
   { name: "Blogs", route: "/blog" },
-  { name: "Projects", route: "/projects" }, 
-  { name: "Media", route: "/media" }, 
+  { name: "Projects", route: "/projects" },
+  { name: "Media", route: "/media" },
 ];
+const pathname = Astro.url.pathname.replace(/\/$/, "") || "/";
+const isActive = (route: string) =>
+  route === "/" ? pathname === "/" : pathname === route || pathname.startsWith(route + "/");
 ---
 <nav>
   <ul class="flex space-x-4 m-8 justify-center">
-    {pages.map(({name, route}) => <li><a href={route} class="underline">{name}</a></li>)}
+    {pages.map(({ name, route }) => (
+      <li>
+        <a
+          href={route}
+          class={`underline ${isActive(route) ? "text-sky-400" : ""}`}
+        >
+          {name}
+        </a>
+      </li>
+    ))}
   </ul>
-</nav
+</nav>

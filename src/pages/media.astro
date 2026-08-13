@@ -1,8 +1,8 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro'
-import { Image } from 'astro:assets';
+
 const media = [
-    { name: "I got marriage on December 20 <3", 
+  { name: "I got marriage on December 20 <3",
     images: [
       "/media/marriage/20250610_014141.jpg",
       "/media/marriage/20250610_014148.jpg"
@@ -10,26 +10,24 @@ const media = [
   }
 ];
 ---
-<BaseLayout>
+<BaseLayout title="Media" description="Photos and other media from my life.">
   <ul>
-    {media.map(content => {
-      return (
-        <li class="grid text-center">
-          <div class="flex justify-center space-x-2 m-2">
-            {content.images.map(image_media => (
-              <a
-                href={image_media} {/* Use the original source URL of the image */}
-                target="_blank"     {/* Opens the link in a new tab */}
-                rel="noopener noreferrer" {/* Security best practice for target="_blank" */}
-                class="block"
-              >
-                <Image class="rounded-sm" src={image_media} width="200" alt="marriage_photo" height="200"/>
-              </a>
-            ))}
-          </div>
-          <p>{content.name}</p>
-        </li>
-      )
-    })}
+    {media.map(content => (
+      <li class="grid text-center">
+        <div class="flex justify-center space-x-2 m-2">
+          {content.images.map(image_media => (
+            <a
+              href={image_media}
+              target="_blank"
+              rel="noopener noreferrer"
+              class="block"
+            >
+              <img class="rounded-sm" src={image_media} width="200" height="200" loading="lazy" alt="marriage_photo" />
+            </a>
+          ))}
+        </div>
+        <p>{content.name}</p>
+      </li>
+    ))}
   </ul>
 </BaseLayout>
