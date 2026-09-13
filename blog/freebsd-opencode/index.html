@@ -1,0 +1,35 @@
+<!DOCTYPE html><html lang="en"> <head><meta charset="UTF-8"><meta name="viewport" content="width=device-width"><link rel="icon" type="image/png" href="/_astro/rikka.ZZLivt6u.png"><meta name="generator" content="Astro v5.9.1"><title>Running opencode on FreeBSD — Mawfyy</title><meta name="description" content="How I got opencode working on FreeBSD with just bun and a few commands."><meta property="og:title" content="Running opencode on FreeBSD — Mawfyy"><meta property="og:description" content="How I got opencode working on FreeBSD with just bun and a few commands."><meta property="og:type" content="website"><meta property="og:url" content="https://mawfyy.github.io/blog/freebsd-opencode/"><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@300;400;500;700&display=swap" rel="stylesheet"><link rel="stylesheet" href="/_astro/about-me.BajIMRMF.css"></head> <body> <header> <nav> <ul class="flex space-x-4 m-8 justify-center"> <li> <a href="/" class="underline "> Home </a> </li><li> <a href="/about-me" class="underline "> About me </a> </li><li> <a href="/contact-me" class="underline "> Contact me </a> </li><li> <a href="/blog" class="underline text-sky-400"> Blogs </a> </li><li> <a href="/projects" class="underline "> Projects </a> </li><li> <a href="/media" class="underline "> Media </a> </li> </ul> </nav> </header>  <main class="max-w-2xl mx-auto p-4"> <h1>Running opencode on FreeBSD</h1> <p class="text-sm text-white/60"> 2026-09-12 </p> <article class="mt-8 leading-relaxed"> <p>Since I moved to FreeBSD, I wanted my usual dev tools with me. The CLI one I reach for most is <a href="https://github.com/anomalyco/opencode">opencode</a>. Turns out getting it running is about as simple as it can get — no compilation, no patches, no cargo or node build steps. Just Bun.</p>
+<p>Here’s the whole thing:</p>
+<ol>
+<li>Install Bun (the FreeBSD package is there, I grabbed it with <code>pkg</code>).</li>
+<li>Clone the repo.</li>
+<li>Check out the <code>freebsd-source-builds</code> branch.</li>
+<li><code>bun install</code> from the repo root.</li>
+<li><code>bun dev</code></li>
+</ol>
+<p>That’s literally it. opencode runs as a TUI on top of Bun, so on FreeBSD it behaves exactly like it does on Linux.</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="sh"><code><span class="line"><span style="color:#6A737D"># 1. Bun</span></span>
+<span class="line"><span style="color:#B392F0">sudo</span><span style="color:#9ECBFF"> pkg</span><span style="color:#9ECBFF"> install</span><span style="color:#9ECBFF"> bun</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#6A737D"># 2. Clone</span></span>
+<span class="line"><span style="color:#B392F0">git</span><span style="color:#9ECBFF"> clone</span><span style="color:#9ECBFF"> https://github.com/anomalyco/opencode.git</span></span>
+<span class="line"><span style="color:#79B8FF">cd</span><span style="color:#9ECBFF"> opencode</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#6A737D"># 3. Branch for FreeBSD</span></span>
+<span class="line"><span style="color:#B392F0">git</span><span style="color:#9ECBFF"> checkout</span><span style="color:#9ECBFF"> freebsd-source-builds</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#6A737D"># 4. Dependencies (from repo root, it's a monorepo)</span></span>
+<span class="line"><span style="color:#B392F0">bun</span><span style="color:#9ECBFF"> install</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#6A737D"># 5. Run it</span></span>
+<span class="line"><span style="color:#B392F0">bun</span><span style="color:#9ECBFF"> dev</span></span></code></pre>
+<p>A couple of notes from my own setup:</p>
+<ul>
+<li>Make sure you have a terminal that handles the TUI well. tmux or kitty both worked fine, bemenu-style plain xterm not so much.</li>
+<li>If you’re on a fresh install like I was, add your model provider keys in <code>~/.config/opencode/opencode.json</code>.</li>
+<li>Use the <code>freebsd-source-builds</code> branch — the default <code>dev</code> branch doesn’t build on FreeBSD.</li>
+<li><code>bun install</code> once at the repo root (it’s a monorepo), but <code>bun dev</code> runs from <code>packages/opencode</code> — that’s where the TUI package lives.</li>
+</ul>
+<p>One thing that surprised me pleasantly: no Electron, no WebView, no system dependencies. Just a binary-friendly runtime and the terminal. On FreeBSD that’s a real gift compared to most modern dev tools.</p> </article> </main>  <footer class="flex justify-center m-8">
+Made by Mawfyy with &hearts;
+</footer> </body></html>
