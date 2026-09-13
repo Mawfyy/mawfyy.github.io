@@ -1,7 +1,6 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro'
 import Kobayashi from '../assets/icons/kobayashi.png'
-import { Image } from 'astro:assets';
 ---
 <BaseLayout title="About me" description="Who I am — interests, hobbies and what I'm about.">
   <div class="flex flex-col items-center">
@@ -13,6 +12,6 @@ import { Image } from 'astro:assets';
       <p>Linux user since I was 14 years old :3</p>
       <p>Brawl Stars & GD player since 2019!!</p>
     </div>
-    <Image src={Kobayashi} alt="Kobayashi san" width="500" height="500"/>
+    <img src={Kobayashi.src} alt="Kobayashi san" width="500" height="500" class="max-w-full h-auto" />
   </div>
 </BaseLayout>

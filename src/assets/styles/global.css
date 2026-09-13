@@ -5,3 +5,18 @@ body {
   background-color: black; /* Sets the background to black */
   color: white;           /* Sets the default text color to white */
 }
+
+img,
+video {
+  max-width: 100%;
+  height: auto;
+}
+
+pre {
+  max-width: 100%;
+  overflow-x: auto;
+}
+
+article code {
+  overflow-wrap: break-word;
+}

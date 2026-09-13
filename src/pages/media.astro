@@ -14,7 +14,7 @@ const media = [
   <ul>
     {media.map(content => (
       <li class="grid text-center">
-        <div class="flex justify-center space-x-2 m-2">
+        <div class="flex flex-wrap justify-center gap-2 m-2">
           {content.images.map(image_media => (
             <a
               href={image_media}
